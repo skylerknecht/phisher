@@ -27,7 +27,7 @@ class Engine:
     results = []
     users = {}
 
-    def __init__(self, downloads_file, visits_file, blocked_file):
+    def __init__(self, visits_file, downloads_file, blocked_file):
         self.blocked_file = blocked_file
         self.downloads_file = downloads_file
         self.visits_file = visits_file
@@ -37,6 +37,7 @@ class Engine:
         _results = []
         if not os.path.exists(f'{self.downloads_file}'):
             print('[-] No downloads found')
+            return
         with open(f'{self.downloads_file}', 'r') as downloads:
             for download in downloads:
                 data = download.rstrip().split('@')
@@ -48,6 +49,7 @@ class Engine:
         _results = []
         if not os.path.exists(f'{self.visits_file}'):
             print('[-] No visits found')
+            return
         with open(f'{self.visits_file}', 'r') as visits:
             for visit in visits:
                 data = visit.rstrip().split('@')
@@ -58,6 +60,7 @@ class Engine:
         _results = []
         if not os.path.exists(f'{self.blocked_file}'):
             print('[-] No blocks found')
+            return
         with open(f'{self.blocked_file}', 'r') as blocks:
             for block in blocks:
                 data = block.rstrip().split('@')
@@ -80,6 +83,7 @@ class Engine:
                 print('[+] ' + result.type.upper() + ': ' + self.users[result.rid].first + ' ' + self.users[result.rid].last + ', ' + self.users[result.rid].email  +  ', ' + result.ip + ', ' + result.date)
             except:
                 continue
+        print('')
 
     def backup_results(self, backup_path):
         if os.path.exists(f'{self.downloads_file}'):
@@ -108,3 +112,4 @@ class Engine:
             print('[-] No results')
         for result in self.results:
             print('[+] ' + result.type.upper() + ': ' + result.rid + ', ' + result.ip + ', ' + result.date)
+        print('')
