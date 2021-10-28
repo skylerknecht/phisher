@@ -37,7 +37,7 @@ class Engine:
         _results = []
         if not os.path.exists(f'{self.downloads_file}'):
             print('[-] No downloads found')
-            return
+            return _results
         with open(f'{self.downloads_file}', 'r') as downloads:
             for download in downloads:
                 data = download.rstrip().split('@')
@@ -49,7 +49,7 @@ class Engine:
         _results = []
         if not os.path.exists(f'{self.visits_file}'):
             print('[-] No visits found')
-            return
+            return _results
         with open(f'{self.visits_file}', 'r') as visits:
             for visit in visits:
                 data = visit.rstrip().split('@')
@@ -60,7 +60,7 @@ class Engine:
         _results = []
         if not os.path.exists(f'{self.blocked_file}'):
             print('[-] No blocks found')
-            return
+            return _results
         with open(f'{self.blocked_file}', 'r') as blocks:
             for block in blocks:
                 data = block.rstrip().split('@')
@@ -102,12 +102,9 @@ class Engine:
             print(f'\n[-] No visits found')
 
     def show_results(self):
-        if os.path.exists(f'{self.downloads_file}'):
-            self.results.extend(self.ret_downloads())
-        if os.path.exists(f'{self.visits_file}'):
-            self.results.extend(self.ret_visits())
-        if os.path.exists(f'{self.blocked_file}'):
-            self.results.extend(self.ret_blocked())
+        self.results.extend(self.ret_downloads())
+        self.results.extend(self.ret_visits())
+        self.results.extend(self.ret_blocked())
         if not self.results:
             print('[-] No results')
         for result in self.results:
