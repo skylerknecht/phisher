@@ -40,7 +40,7 @@ class Engine:
         with open(f'{self.downloads_file}', 'r') as downloads:
             for download in downloads:
                 data = download.rstrip().split('@')
-                _results.append(Result('download', data[0], data[1], data[2]))
+                _results.append(self.Result('download', data[0], data[1], data[2]))
         return _results
 
 
@@ -51,7 +51,7 @@ class Engine:
         with open(f'{self.visits_file}', 'r') as visits:
             for visit in visits:
                 data = visit.rstrip().split('@')
-                _results.append(Result('visit', data[0], data[1], data[2]))
+                _results.append(self.Result('visit', data[0], data[1], data[2]))
         return _results
 
     def ret_blocked(self):
@@ -61,7 +61,7 @@ class Engine:
         with open(f'{self.blocked_file}', 'r') as blocks:
             for block in blocks:
                 data = block.rstrip().split('@')
-                _results.append(Result('block', data[0], data[1], data[2]))
+                _results.append(self.Result('block', data[0], data[1], data[2]))
         return _results
 
     def parse_results(self, database):
@@ -71,7 +71,7 @@ class Engine:
             print('[-] Invalid database file')
             return
         for item in query.execute('select * from results'):
-            self.users[item[3]] = User(item[4], item[5], item[6])
+            self.users[item[3]] = self.User(item[4], item[5], item[6])
         self.results.extend(self.ret_downloads())
         self.results.extend(self.ret_visits())
         print('')
