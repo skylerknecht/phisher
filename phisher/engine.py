@@ -82,7 +82,6 @@ class Engine:
                 continue
 
     def backup_results(self, backup_path):
-        print('help')
         if os.path.exists(f'{self.downloads_file}'):
             print('\n[+] Found downloads.txt', end='')
             _backup_path = generate_path(f'{backup_path}downloads')
