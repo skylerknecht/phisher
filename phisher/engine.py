@@ -77,13 +77,11 @@ class Engine:
             self.users[item[3]] = self.User(item[4], item[5], item[6])
         self.results.extend(self.ret_downloads())
         self.results.extend(self.ret_visits())
-        print('')
         for result in self.results:
             try:
                 print('[+] ' + result.type.upper() + ': ' + self.users[result.rid].first + ' ' + self.users[result.rid].last + ', ' + self.users[result.rid].email  +  ', ' + result.ip + ', ' + result.date)
             except:
                 continue
-        print('')
 
     def backup_results(self, backup_path):
         if os.path.exists(f'{self.downloads_file}'):
@@ -109,4 +107,3 @@ class Engine:
             print('[-] No results')
         for result in self.results:
             print('[+] ' + result.type.upper() + ': ' + result.rid + ', ' + result.ip + ', ' + result.date)
-        print('')
