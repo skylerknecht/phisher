@@ -85,19 +85,19 @@ class Engine:
 
     def backup_results(self, backup_path):
         if os.path.exists(f'{self.downloads_file}'):
-            print('\n[+] Found downloads.txt', end='')
+            print('[+] Found downloads.txt', end='')
             _backup_path = generate_path(f'{backup_path}downloads')
             os.rename(f'{self.downloads_file}', _backup_path)
-            print(f'\n[+] Downloads backed up to: {_backup_path}')
+            print(f'[+] Downloads backed up to: {_backup_path}')
         else:
-            print(f'\n[-] No downloads found')
+            print(f'[-] No downloads found')
         if os.path.exists(f'{self.visits_file}'):
-            print('\n[+] Found visits.txt', end='')
+            print('[+] Found visits.txt', end='')
             _backup_path = generate_path(f'{backup_path}visits')
             os.rename(f'{self.visits_file}', _backup_path)
-            print(f'\n[+] Visits backed up to: {_backup_path}')
+            print(f'[+] Visits backed up to: {_backup_path}')
         else:
-            print(f'\n[-] No visits found')
+            print(f'[-] No visits found')
 
     def show_results(self):
         self.results.extend(self.ret_downloads())
