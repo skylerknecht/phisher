@@ -1,0 +1,19 @@
+#!/usr/bin/env -S python3 -B
+import argparse
+import phisher
+import sys
+
+def main():
+    parser = argparse.ArgumentParser(add_help=False, description='GoPhish database parser.', usage='%(prog)s <visits_file> <downloads_file> <blocked_file> [--backup <backup_path>, --parse <database_file>, --show]')
+    parser.add_argument('Visits', type=str, help='The visits file.')
+    parser.add_argument('Downloads', type=str, help='The downloads file.')
+    parser.add_argument('Blocked', type=str, help='The blocked filed.')
+    parser.add_argument('--help', action='help', help='Show this help message and exits.')
+    parser.add_argument('--backup', type=str, help='Backups the downloads and visits.')
+    parser.add_argument('--parse', type=str, help='GoPhish database file.')
+    parser.add_argument('--show', default=False, action='store_true', help='The nmap file to parse.')
+    args = parser.parse_args()
+    return phisher.run(args)
+
+if __name__ == '__main__':
+    sys.exit(main())
